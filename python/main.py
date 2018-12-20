@@ -1,7 +1,7 @@
 import numpy as np
 
-from python.tone import generate_song
-from python.wav_writer import WaveWriter
+from tone import generate_song
+from wav_writer import WaveWriter
 
 # 主旋律：八辈子
 song = [[3, 1], [5, 1], [3, 1], [3, .5],
