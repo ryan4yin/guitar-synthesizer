@@ -1,18 +1,18 @@
 function wav = makewav(f,t,s,Fs)
-% f : ÆµÂÊ
-% t : Ê±³¤
-% Fs: ²ÉÑùÆµÂÊ
+% f : é¢‘ç‡
+% t : æ—¶é•¿
+% Fs: é‡‡æ ·é¢‘ç‡
 
-    N = round(Fs*t); %×ÜµÄ²ÉÑùµã¸öÊı
-    L = floor(Fs/f); %Ò»¸öÖÜÆÚËùº¬µÄ²ÉÑùÊı(Õû)
-    part = rand(1,L)-0.5; %Ñ­»·¶Î
-    np = floor(N/L); %×ÜµÄÑ­»·´ÎÊı
+    N = round(Fs*t); %æ€»çš„é‡‡æ ·ç‚¹ä¸ªæ•°
+    L = floor(Fs/f); %ä¸€ä¸ªå‘¨æœŸæ‰€å«çš„é‡‡æ ·æ•°(æ•´)
+    part = rand(1,L)-0.5; %å¾ªç¯æ®µ
+    np = floor(N/L); %æ€»çš„å¾ªç¯æ¬¡æ•°
 
-    r = 0.5; %Æ½¾ùÈ¨Öµ
+    r = 0.5; %å¹³å‡æƒå€¼
 
     wav=zeros(1,N);
     for i=1:np
-        part = part * r + [part(end) part(1:end-1)] * (1 -r);   % ¼ªËûÒôÖÊËã·¨
+        part = part * r + [part(end) part(1:end-1)] * (1 -r);   % å‰ä»–éŸ³è´¨ç®—æ³•
         pos = L * (i -1) + 1;
         wav(pos:pos+L-1) = part;
     end
