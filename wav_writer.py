@@ -5,7 +5,7 @@ from itertools import zip_longest
 
 
 class WaveWriter:
-    def __init__(self, filename, beat_duration=0.5):
+    def __init__(self, filename):
         self.song = wave.open(filename, 'wb')
         self.sampwidth = 1
 
@@ -32,7 +32,7 @@ class WaveWriter:
         :return: None
         """
         buffersize = 2048
-        max_amplitude = pow(2, self.sampwidth * 8 - 1) - 1  # 振幅是由sampwidth界定，而且是有符号数
+        max_amplitude = np.power(2, self.sampwidth * 8 - 1) - 1  # 振幅是由sampwidth界定，而且是有符号数
 
         group = zip_longest(*[iter(wav)] * buffersize)  # 以 2048 为一组，做分组。提高写入效率。
 

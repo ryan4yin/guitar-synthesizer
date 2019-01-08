@@ -1,14 +1,13 @@
 from random import uniform
-import math
 import numpy as np
 
 
 class Tone:
     a1 = 440  # 标准音a1
-    r = pow(2, 1 / 12)  # 12平均律的比值
+    r = np.power(2, 1 / 12)  # 12平均律的比值
 
 
-def generate_tone(semitones, t, fs=44100, amplitude=1):
+def generate_tone(semitones: int, t, fs: int = 44100, amplitude=1):
     """
     :param semitones: 与标准音相差的半音数
     :param t:         该音调持续的时长
@@ -19,10 +18,10 @@ def generate_tone(semitones, t, fs=44100, amplitude=1):
     result = np.array([])
 
     # 1. some instants
-    tone_frequency = int(Tone.a1 * pow(Tone.r, semitones))  # 该音调的频率
+    tone_frequency = int(Tone.a1 * np.power(Tone.r, semitones))  # 该音调的频率
     size = int(t * fs)  # 总的采样点个数
     T = int(fs / tone_frequency)  # 一个周期的采样点个数
-    repeat_times = int(math.ceil(size / T))  # 在时间 t 内，循环的次数
+    repeat_times = int(np.ceil(size / T))  # 在时间 t 内，循环的次数
 
     # 2. generate random wav with the length T
     sample = np.array([uniform(-1, 1) for _ in range(T)])
